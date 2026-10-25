@@ -7,6 +7,7 @@
   - Sheets: DP02, DP03, DP04, DP05
   - Poverty by age (including 65 years and over) is in DP03
   - Health insurance coverage is also in DP03
+  - Housing cost burden (gross rent as % of income) is in DP04
 
 ### Senate Districts
 - Excel (all Senate districts): https://files.hawaii.gov/dbedt/census/acs/acs2024/5yr/acs2024_5yr_senate_hi.xlsx
@@ -21,6 +22,18 @@
 ### Other ACS links
 - Hawaii State Data Center ACS page: https://census.hawaii.gov/acs/acs-2024/
 - Census Reporter (House District 22 example): https://censusreporter.org/profiles/62000US15022-state-house-district-22-hi/
+
+## Mapping Resources
+
+### HAIC guidance
+- Know Your District use-case PDF (mentions ESRI/ArcGIS mapping and Living Atlas layers):
+  https://haic.hawaii.gov/wp-content/uploads/2026/10/HAIC_Use_Case_Know_Your_District_AI_Agent_2026.pdf
+
+### Official Hawaii maps & ArcGIS tools
+- Hawaii Office of Elections – Election Maps: https://elections.hawaii.gov/resources/maps/election-maps/
+- City & County of Honolulu Elections App (ArcGIS): https://experience.arcgis.com/experience/7960b9bb3b6543699d364f9001692e81/page/City-and-County-of-Honolulu
+- Hawaii Statewide GIS Program: https://planning.hawaii.gov/gis/
+- Hawaii State House Districts 2022 (open data): https://opendata.hawaii.gov/dataset/hawaii-state-house-districts-2022
 
 ## Hawaiʻi DHS BESSD / SNAP Participation Reports
 
@@ -46,3 +59,15 @@ Note: Legislative testimony from BESSD/DHS is typically posted on the Hawaii Sta
 ### Health Insurance Marketplace
 - HealthCare.gov (federal marketplace for Hawaii): https://www.healthcare.gov/
 - See plans / estimate financial help: https://www.healthcare.gov/see-plans/
+
+## Housing Assistance Programs
+
+### Section 8 / Housing Choice Voucher (Oahu – HPHA)
+- HPHA main site: https://hpha.hawaii.gov/
+- Housing Choice Voucher program page: https://hpha.hawaii.gov/programs-and-resources/voucher-programs
+- How to apply / waitlist status: https://hpha.hawaii.gov/how-to-apply
+- Note: HPHA administers HCV (Section 8) for Oahu only. Neighbor island counties administer their own programs.
+
+### Other housing resources
+- HUD Hawaii rental help overview: https://www.hud.gov/states/hawaii/renting
+- HHFDC finding affordable housing: https://dbedt.hawaii.gov/hhfdc/looking-for-affordable-housing-in-hawaii/
