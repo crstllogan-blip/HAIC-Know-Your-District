@@ -6,6 +6,7 @@
 - Excel (all House districts): https://files.hawaii.gov/dbedt/census/acs/acs2024/5yr/acs2024_5yr_house_hi.xlsx
   - Sheets: DP02, DP03, DP04, DP05
   - Poverty by age (including 65 years and over) is in DP03
+  - Health insurance coverage is also in DP03
 
 ### Senate Districts
 - Excel (all Senate districts): https://files.hawaii.gov/dbedt/census/acs/acs2024/5yr/acs2024_5yr_senate_hi.xlsx
@@ -33,3 +34,15 @@
 - DHS Databook 2025 (broader program statistics): https://humanservices.hawaii.gov/wp-content/uploads/2026/03/DHS-Databook-2025.pdf
 
 Note: Legislative testimony from BESSD/DHS is typically posted on the Hawaii State Legislature site (capitol.hawaii.gov) under individual bills rather than in a single archive.
+
+## Health Coverage Programs
+
+### Med-QUEST (Hawaii Medicaid)
+- Main site: https://medquest.hawaii.gov/
+- How to apply: https://medquest.hawaii.gov/en/members-applicants/get-started/how-to-apply.html
+- Online application portal: https://medical.mybenefits.hawaii.gov
+- Customer service: 1-800-316-8005
+
+### Health Insurance Marketplace
+- HealthCare.gov (federal marketplace for Hawaii): https://www.healthcare.gov/
+- See plans / estimate financial help: https://www.healthcare.gov/see-plans/
