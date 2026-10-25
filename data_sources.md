@@ -71,3 +71,18 @@ Note: Legislative testimony from BESSD/DHS is typically posted on the Hawaii Sta
 ### Other housing resources
 - HUD Hawaii rental help overview: https://www.hud.gov/states/hawaii/renting
 - HHFDC finding affordable housing: https://dbedt.hawaii.gov/hhfdc/looking-for-affordable-housing-in-hawaii/
+
+## Early Childhood / Under-5 Programs
+
+### State coordination
+- Executive Office on Early Learning (EOEL): https://earlylearning.hawaii.gov/
+
+### Head Start / Early Head Start providers
+- Parents And Children Together (PACT) – Early Head Start & Head Start: https://www.pacthawaii.org/head-start
+- Honolulu Community Action Program (HCAP) Head Start: https://www.hcapweb.org/headstart
+- Child & Family Service – Early Head Start & Head Start: https://www.childandfamilyservice.org/programs/headstart/
+- Maui Economic Opportunity (MEO) Head Start: https://www.meoinc.org/
+
+### Other resources
+- The Parent Line – Child Care, Preschool & Play Activities directory: https://www.theparentline.org/resource-directory/child-care-preschool-play-activities/
+- Preschool Open Doors (POD) and Child Care Subsidy are administered through DHS (see humanservices.hawaii.gov and earlylearning.hawaii.gov for current eligibility and application details).
