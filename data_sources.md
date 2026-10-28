@@ -23,6 +23,21 @@
 - Hawaii State Data Center ACS page: https://census.hawaii.gov/acs/acs-2024/
 - Census Reporter (House District 22 example): https://censusreporter.org/profiles/62000US15022-state-house-district-22-hi/
 
+### Key ACS Tables from Build Guide Done When list
+These table IDs are called out in the build guide. Best retrieved via data.census.gov filtered to Hawaii State Legislative Districts (Upper/Lower Chamber), or already present in the House/Senate Excel Data Profiles above.
+
+- **DP03** – Selected Economic Characteristics (income, poverty, employment, health insurance)
+  - Already in the House & Senate Excels (DP03 sheet)
+  - data.census.gov: https://data.census.gov/table?q=DP03 (filter to legislative districts)
+- **S1701** – Poverty Status in the Past 12 Months (detailed by age, including 65+)
+  - data.census.gov: https://data.census.gov/table/ACSST5Y2024.S1701
+- **B01001** – Sex by Age
+  - data.census.gov: https://data.census.gov/table/ACSDT5Y2024.B01001
+- **B17001** – Poverty Status in the Past 12 Months by Sex by Age
+  - data.census.gov: https://data.census.gov/table/ACSDT5Y2024.B17001
+- **B25070** – Gross Rent as a Percentage of Household Income
+  - data.census.gov: https://data.census.gov/table/ACSDT5Y2024.B25070
+
 ## Mapping Resources
 
 ### HAIC guidance
@@ -34,6 +49,8 @@
 - City & County of Honolulu Elections App (ArcGIS): https://experience.arcgis.com/experience/7960b9bb3b6543699d364f9001692e81/page/City-and-County-of-Honolulu
 - Hawaii Statewide GIS Program: https://planning.hawaii.gov/gis/
 - Hawaii State House Districts 2022 (open data): https://opendata.hawaii.gov/dataset/hawaii-state-house-districts-2022
+- ArcGIS item (House Districts 2022): https://www.arcgis.com/home/item.html?id=c2f8b485f2064ba1a117ececab301acd
+- Office of Elections GIS files: https://elections.hawaii.gov/resources/maps/geographic-information-systems-gis-files/
 
 ## Hawaiʻi DHS BESSD / SNAP Participation Reports
 
@@ -86,3 +103,24 @@ Note: Legislative testimony from BESSD/DHS is typically posted on the Hawaii Sta
 ### Other resources
 - The Parent Line – Child Care, Preschool & Play Activities directory: https://www.theparentline.org/resource-directory/child-care-preschool-play-activities/
 - Preschool Open Doors (POD) and Child Care Subsidy are administered through DHS (see humanservices.hawaii.gov and earlylearning.hawaii.gov for current eligibility and application details).
+
+## Additional Sources from Build Guide / Use Case PDF
+
+### DOTAX Public Tax Statistics
+- Main stats page: https://tax.hawaii.gov/stats/
+- Current monthly tax reports: https://tax.hawaii.gov/stats/a5_3txcolrpt/
+- Data Dashboard: https://tax.hawaii.gov/data-dashboard/
+- Annual reports: https://tax.hawaii.gov/stats/a5_1annual/
+
+### UHERO (University of Hawaiʻi Economic Research Organization)
+- Data Portal: https://uhero.hawaii.edu/data/
+- Reports & research: https://uhero.hawaii.edu/research/
+- Hawaii Housing Factbook 2025: https://uhero.hawaii.edu/the-hawaii-housing-factbook-2025/
+
+### State of Hawaiʻi Data Book (DBEDT / READ)
+- Main page: https://dbedt.hawaii.gov/economic/databook/
+- 2025 edition: https://dbedt.hawaii.gov/economic/databook/db2025/
+
+### Federal Regional Data
+- BLS Hawaii: https://www.bls.gov/regions/west/hawaii.htm
+- BEA by place: https://www.bea.gov/data/by-place-us (search for Hawaii)
