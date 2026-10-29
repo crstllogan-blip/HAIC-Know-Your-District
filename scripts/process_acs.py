@@ -3,12 +3,12 @@ Starter script to download and process ACS 2020-2024 5-year
 House and Senate legislative district data for Hawaii.
 
 Run from the repo root:
-    python scripts/process_acs.py
+    python3 scripts/process_acs.py
 
 Outputs clean CSVs to data/processed/
 """
 
-import os
+import re
 import requests
 import pandas as pd
 from pathlib import Path
@@ -27,6 +27,20 @@ PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 HOUSE_URL = "https://files.hawaii.gov/dbedt/census/acs/acs2024/5yr/acs2024_5yr_house_hi.xlsx"
 SENATE_URL = "https://files.hawaii.gov/dbedt/census/acs/acs2024/5yr/acs2024_5yr_senate_hi.xlsx"
 
+# Key labels we want to extract (exact or partial matches from column 0)
+KEY_LABELS = {
+    "Population 16 years and over": "pop_16_plus",
+    "In labor force": "in_labor_force",
+    "Median household income (dollars)": "median_hh_income",
+    "Mean household income (dollars)": "mean_hh_income",
+    "Per capita income (dollars)": "per_capita_income",
+    "Median family income (dollars)": "median_family_income",
+    "Percentage of families whose income in the past 12 months is below the poverty level": "pct_families_poverty",
+    "Percentage of people whose income in the past 12 months is below the poverty level": "pct_people_poverty",
+    "Percentage of people 18 years and over whose income in the past 12 months is below the poverty level": "pct_18plus_poverty",
+    "Percentage of people 65 years and over whose income in the past 12 months is below the poverty level": "pct_65plus_poverty",
+}
+
 def download_file(url: str, dest: Path) -> None:
     """Download a file if it does not already exist."""
     if dest.exists():
@@ -38,42 +52,60 @@ def download_file(url: str, dest: Path) -> None:
     dest.write_bytes(response.content)
     print(f"Saved to {dest}")
 
+def extract_district_number(name: str) -> int | None:
+    """Extract the numeric district ID from a name like 'State House District 22 (2024); Hawaii'."""
+    if not isinstance(name, str):
+        return None
+    match = re.search(r"District\s+(\d+)", name, re.IGNORECASE)
+    return int(match.group(1)) if match else None
+
 def extract_key_metrics(excel_path: Path, chamber: str) -> pd.DataFrame:
     """
-    Extract a small set of useful columns from the DP03 sheet.
-    Expand this function as you identify more columns you need.
+    Parse the wide-format DP03 sheet and extract key metrics per district.
     """
     print(f"Reading {excel_path} ...")
-    # DP03 is typically the third sheet (0-indexed: 2)
     df = pd.read_excel(excel_path, sheet_name="DP03", header=None)
 
-    # The exact layout can vary. This is a simplified starter that
-    # looks for district identifiers and a few common metrics.
-    # You will likely need to inspect the sheet and adjust the row/column logic.
+    # Row 0 contains district names in columns 1, 5, 9, 13, ...
+    district_cols = []
+    for col in range(1, df.shape[1], 4):
+        district_name = df.iloc[0, col]
+        if isinstance(district_name, str) and "District" in district_name:
+            district_cols.append((col, district_name))
 
-    # Example: find the header row that contains "District" or similar
-    # (This is intentionally simple — refine after you open the file once.)
+    print(f"  Found {len(district_cols)} districts")
+
     records = []
+    for start_col, district_name in district_cols:
+        district_num = extract_district_number(district_name)
+        record = {
+            "chamber": chamber,
+            "district": district_num,
+            "district_name": district_name,
+        }
 
-    # Placeholder logic — replace with real parsing once you examine the sheet
-    # For now we just confirm the file opens and note the shape.
-    print(f"  Sheet shape: {df.shape}")
-    print(f"  First 5 rows (preview):")
-    print(df.head().to_string())
+        # For each key label, find the matching row and grab Estimate + MOE + Percent
+        for label, field in KEY_LABELS.items():
+            # Find the row where column 0 contains the label
+            mask = df[0].astype(str).str.contains(re.escape(label), case=False, na=False)
+            matching_rows = df[mask]
+            if matching_rows.empty:
+                record[f"{field}_estimate"] = None
+                record[f"{field}_moe"] = None
+                record[f"{field}_percent"] = None
+                continue
 
-    # TODO: Implement real extraction of:
-    # - District number / name
-    # - Median household income
-    # - Poverty rate (overall and 65+)
-    # - Housing cost burden
-    # - etc.
-    # Save the raw preview so you can inspect it.
-    preview_path = PROCESSED_DIR / f"{chamber}_dp03_preview.csv"
-    df.head(20).to_csv(preview_path, index=False)
-    print(f"  Preview saved to {preview_path}")
+            row_idx = matching_rows.index[0]
+            # Columns for this district: start_col = Estimate, +1 = MOE, +2 = Percent, +3 = Percent MOE
+            record[f"{field}_estimate"] = df.iloc[row_idx, start_col]
+            record[f"{field}_moe"] = df.iloc[row_idx, start_col + 1]
+            record[f"{field}_percent"] = df.iloc[row_idx, start_col + 2]
 
-    # Return an empty DataFrame for now; fill it in after inspection.
-    return pd.DataFrame()
+        records.append(record)
+
+    result = pd.DataFrame(records)
+    print(f"  Extracted {len(result)} rows")
+    return result
 
 def main():
     house_raw = RAW_DIR / "acs2024_5yr_house_hi.xlsx"
@@ -82,17 +114,20 @@ def main():
     download_file(HOUSE_URL, house_raw)
     download_file(SENATE_URL, senate_raw)
 
-    # Process each file
     house_df = extract_key_metrics(house_raw, "house")
     senate_df = extract_key_metrics(senate_raw, "senate")
 
-    # Once extraction is working, uncomment these:
-    # house_df.to_csv(PROCESSED_DIR / "house_districts.csv", index=False)
-    # senate_df.to_csv(PROCESSED_DIR / "senate_districts.csv", index=False)
-    # print("Processed CSVs written to data/processed/")
+    house_out = PROCESSED_DIR / "house_districts.csv"
+    senate_out = PROCESSED_DIR / "senate_districts.csv"
 
-    print("\nDone. Open the preview CSVs in data/processed/ to see the sheet layout,")
-    print("then update the extract_key_metrics() function to pull the columns you need.")
+    house_df.to_csv(house_out, index=False)
+    senate_df.to_csv(senate_out, index=False)
+
+    print(f"\nWrote {house_out}")
+    print(f"Wrote {senate_out}")
+    print("\nSample of house data:")
+    print(house_df.head(3).to_string())
+    print("\nDone. You can now open the CSVs in data/processed/ or load them in your agent.")
 
 if __name__ == "__main__":
     main()
