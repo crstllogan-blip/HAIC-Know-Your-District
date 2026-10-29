@@ -9,6 +9,8 @@ Outputs clean CSVs to data/processed/
 """
 
 import re
+from typing import Optional
+
 import requests
 import pandas as pd
 from pathlib import Path
@@ -52,7 +54,7 @@ def download_file(url: str, dest: Path) -> None:
     dest.write_bytes(response.content)
     print(f"Saved to {dest}")
 
-def extract_district_number(name: str) -> int | None:
+def extract_district_number(name: str) -> Optional[int]:
     """Extract the numeric district ID from a name like 'State House District 22 (2024); Hawaii'."""
     if not isinstance(name, str):
         return None
